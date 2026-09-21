@@ -1,0 +1,41 @@
+'use client';
+
+import React, { useEffect } from 'react';
+import Lenis from 'lenis';
+import { useReducedMotion } from '@/hooks/useMediaQuery';
+
+interface SmoothScrollProps {
+  children: React.ReactNode;
+}
+
+export function SmoothScroll({ children }: SmoothScrollProps) {
+  const isReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (isReducedMotion) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    const frameId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      lenis.destroy();
+    };
+  }, [isReducedMotion]);
+
+  return <>{children}</>;
+}
