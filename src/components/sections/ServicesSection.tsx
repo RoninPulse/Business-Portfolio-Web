@@ -2,13 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Globe, Cpu, Smartphone, ShoppingBag, Palette, TrendingUp, Server, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Globe, Cpu, Smartphone, ShoppingBag, Palette, TrendingUp, Server, ShieldCheck, LucideIcon } from 'lucide-react';
 import { servicesData } from '@/data/services';
 import { TiltCard } from '@/components/ui/TiltCard';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Badge } from '@/components/ui/Badge';
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, LucideIcon> = {
   Globe,
   Cpu,
   Smartphone,

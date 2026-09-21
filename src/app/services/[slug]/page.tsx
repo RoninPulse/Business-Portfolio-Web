@@ -18,10 +18,11 @@ import {
   Palette, 
   TrendingUp, 
   Server, 
-  ShieldCheck 
+  ShieldCheck,
+  LucideIcon 
 } from 'lucide-react';
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, LucideIcon> = {
   Globe,
   Cpu,
   Smartphone,
